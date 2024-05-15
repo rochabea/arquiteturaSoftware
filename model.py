@@ -1,33 +1,33 @@
 class Book:
-    def __init__(self, titulo, autor, rg_numero):
-        self._titulo = titulo
-        self._autor = autor
-        self._rg_numero = rg_numero
-        self._emprestado = False
+    def __init__(self, title, author, reg_number):
+        self.title = title
+        self.author = author
+        self.reg_number = reg_number
+        self.is_borrowed = False
 
-class Biblioteca:
+class Library:
     def __init__(self):
-        self._livro = []
+        self.books = []
 
-    def adicionar_livro(self, _livro):
-        self._livro.append(_livro)
+    def add_book(self, book):
+        self.books.append(book)
 
-    def procura_titulo(self, _titulo):
-        return [livro for livro in self._livro if _titulo.lower() in livro._titulo.lower()]
-    
-    def procura_autor(self, _autor):
-        return [livro for livro in self._livro if _autor.lower() in livro._autor.lower()]
-    
-    def empresta_livro(self, _rg_numero):
-        for livro in self._livro:
-            if livro._rg_numero == _rg_numero and not livro._emprestado:
-                livro._emprestado = True
-                return livro
+    def search_by_title(self, title):
+        return [book for book in self.books if title.lower() in book.title.lower()]
+
+    def search_by_author(self, author):
+        return [book for book in self.books if author.lower() in book.author.lower()]
+
+    def borrow_book(self, reg_number):
+        for book in self.books:
+            if book.reg_number == reg_number and not book.is_borrowed:
+                book.is_borrowed = True
+                return book
         return None
-    
-    def devolve_livro(self, _rg_numero):
-        for livro in self._livro:
-            if livro._rg_numero == _rg_numero and livro._emprestado:
-                livro._esprestado = False
-                return livro
+
+    def return_book(self, reg_number):
+        for book in self.books:
+            if book.reg_number == reg_number and book.is_borrowed:
+                book.is_borrowed = False
+                return book
         return None

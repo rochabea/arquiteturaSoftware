@@ -1,6 +1,6 @@
 class View:
     @staticmethod
-    def menu():
+    def display_menu():
         print("\nBiblioteca - Menu")
         print("1. Adicionar livro")
         print("2. Buscar livro por título")
@@ -10,18 +10,18 @@ class View:
         print("6. Sair")
 
     @staticmethod
-    def insere(prompt):
+    def get_input(prompt):
         return input(prompt)
-    
-    @staticmethod
-    def display_mensagem(mensagem):
-        print(mensagem)
 
     @staticmethod
-    def display_livros(_livro):
-        if not _livro:
+    def display_message(message):
+        print(message)
+
+    @staticmethod
+    def display_books(books):
+        if not books:
             print("Nenhum livro encontrado.")
         else:
-            for livro in _livro:
-                status = "Disponível" if not livro._emprestado else "Emprestado"
-                print(f"Registro: {livro._rg_numero}, Título: {livro._titulo}, Autor: {livro._autor}, Status: {status}")
+            for book in books:
+                status = "Disponível" if not book.is_borrowed else "Emprestado"
+                print(f"Registro: {book.reg_number}, Título: {book.title}, Autor: {book.author}, Status: {status}")
